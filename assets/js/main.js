@@ -1,4 +1,6 @@
 const containerEl = document.querySelector(".card_container")
+const btnLeftEl = document.querySelector(".btn_left")
+const btnRightEl = document.querySelector(".btn_right")
 let activeImg = 0;
 const arrayInfo = [
     {
@@ -19,7 +21,7 @@ const arrayInfo = [
     {
         name: "Angela Lopez",
         role: "Social Media Manager",
-        photo: "wayne-barnett-founder-ceo.jpg"
+        photo: "angela-lopez-social-media-manager.jpg"
     },
     {
         name: "Scott Estrada",
@@ -53,7 +55,38 @@ printCard(arrayInfo, activeImg);
 
 // Create carousel 
 
+btnLeftEl.addEventListener("click", function () {
+    const arrayCard = document.querySelectorAll(".card")
+    let currentCard = arrayCard[activeImg];
+    currentCard.classList.remove("active")
+    if (activeImg < arrayCard.length - 1) {
+    activeImg++;
+    currentCard = arrayCard[activeImg];
+    currentCard.classList.add("active")
+    } else {
+        activeImg = 0;
+        currentCard = arrayCard[activeImg];
+        console.log(currentCard)
+        currentCard.classList.add("active")    
+    }
+    // currentCard.classList.add("active")
+})
 
+btnRightEl.addEventListener("click", function () {
+    const arrayCard = document.querySelectorAll(".card")
+    let currentCard = arrayCard[activeImg];
+    currentCard.classList.remove("active")
+    if (activeImg > 0) {
+    activeImg--;
+    currentCard = arrayCard[activeImg];
+    currentCard.classList.add("active")
+    } else {
+        activeImg = arrayCard.length - 1;
+        currentCard = arrayCard[activeImg];
+        currentCard.classList.add("active")    
+    }
+    // currentCard.classList.add("active")
+})
 
 
 
@@ -71,10 +104,10 @@ function printCard(arrayInfo, activeImg) {
         const cardEl = `
             <div class="${classEl} card p-4" style="width:30rem;">
              <img src="./assets/img/${teamMember.photo}" class="card-img-top" alt="...">
-              <div class="card-body">
-              <h2 class="card-title fw-semibold">${teamMember.name}</h2>
-              <h3 class="card-subtitle mb-2 text-muted ">${teamMember.role}</h3>
-             </div>
+                <div class="card-body">
+                   <h2 class="card-title fw-semibold">${teamMember.name}</h2>
+                   <h3 class="card-subtitle mb-2 text-muted ">${teamMember.role}</h3>
+                </div>
          </div>`
         containerEl.insertAdjacentHTML("beforeend", cardEl)
     }
