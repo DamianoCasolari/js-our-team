@@ -1,4 +1,4 @@
-const containerEl =document.querySelector(".my_container")
+const containerEl = document.querySelector(".my_container")
 let activeImg = 0;
 const arrayInfo = [
     {
@@ -33,25 +33,42 @@ const arrayInfo = [
     }
 ]
 
+
 // Print in console elements of array 
 for (let index = 0; index < arrayInfo.length; index++) {
     const teamMember = arrayInfo[index];
-        console.log(teamMember);
-    }
+    console.log(teamMember);
+}
 // Print in console keys and values ​​of the objects in the array
 for (let index = 0; index < arrayInfo.length; index++) {
     const teamMember = arrayInfo[index];
     for (const key in teamMember) {
         console.log(key, teamMember[key]);
-        }
     }
+}
+
+//create card of team members and print in DOM
+
+printCard(arrayInfo, activeImg);
+
+// Create carousel 
 
 
-// Print in the card elements keys and values ​​of the objects in the array
+
+
+
+// FUNCTION 
+
+/**
+ * Function for create card of team members and print in DOM
+ * @param {array} arrayInfo  array Team members 
+ * @param {number} activeImg variable for control active class on card
+ */
+function printCard(arrayInfo,activeImg) {
 for (let index = 0; index < arrayInfo.length; index++) {
     const teamMember = arrayInfo[index];
-    classEl = index == activeImg ? 'active' : '';    
-        const cardEl = `
+    classEl = index == activeImg ? 'active' : '';
+    const cardEl = `
             <div class="${classEl} card p-4" style="width:30rem;">
              <img src="./assets/img/${teamMember.photo}" class="card-img-top" alt="...">
               <div class="card-body">
@@ -59,9 +76,9 @@ for (let index = 0; index < arrayInfo.length; index++) {
               <h3 class="card-subtitle mb-2 text-muted ">${teamMember.role}</h3>
              </div>
          </div>`
-     containerEl.insertAdjacentHTML("beforeend", cardEl)
-    }
+    containerEl.insertAdjacentHTML("beforeend", cardEl)
+}}
 
-// Create carousel
+
 
 
