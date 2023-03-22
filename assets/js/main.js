@@ -1,4 +1,4 @@
-const containerEl = document.querySelector(".my_container")
+const containerEl = document.querySelector(".card_container")
 let activeImg = 0;
 const arrayInfo = [
     {
@@ -64,11 +64,11 @@ printCard(arrayInfo, activeImg);
  * @param {array} arrayInfo  array Team members 
  * @param {number} activeImg variable for control active class on card
  */
-function printCard(arrayInfo,activeImg) {
-for (let index = 0; index < arrayInfo.length; index++) {
-    const teamMember = arrayInfo[index];
-    classEl = index == activeImg ? 'active' : '';
-    const cardEl = `
+function printCard(arrayInfo, activeImg) {
+    for (let index = 0; index < arrayInfo.length; index++) {
+        const teamMember = arrayInfo[index];
+        classEl = index == activeImg ? 'active' : '';
+        const cardEl = `
             <div class="${classEl} card p-4" style="width:30rem;">
              <img src="./assets/img/${teamMember.photo}" class="card-img-top" alt="...">
               <div class="card-body">
@@ -76,8 +76,9 @@ for (let index = 0; index < arrayInfo.length; index++) {
               <h3 class="card-subtitle mb-2 text-muted ">${teamMember.role}</h3>
              </div>
          </div>`
-    containerEl.insertAdjacentHTML("beforeend", cardEl)
-}}
+        containerEl.insertAdjacentHTML("beforeend", cardEl)
+    }
+}
 
 
 
