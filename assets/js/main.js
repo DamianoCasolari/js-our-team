@@ -59,6 +59,7 @@ printCard(arrayInfo, activeImg);
 
 // Create carousel 
 
+// Add carousel effect left button
 btnLeftEl.addEventListener("click", function () {
     const arrayCard = document.querySelectorAll(".main_card")
     const arrayLeftCard = document.querySelectorAll(".left_card")
@@ -88,7 +89,6 @@ btnLeftEl.addEventListener("click", function () {
     } else {
         activeImg = 0;
         currentCard = arrayCard[activeImg];
-        // console.log(currentCard)
         currentCard.classList.add("active")
 
         currentLeftCard = arrayLeftCard[activeImg];
@@ -101,6 +101,7 @@ btnLeftEl.addEventListener("click", function () {
    
 })
 
+// Add carousel effect right button
 btnRightEl.addEventListener("click", function () {
 
     const arrayCard = document.querySelectorAll(".main_card")
