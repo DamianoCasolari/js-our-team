@@ -56,18 +56,22 @@ i {
     top: 40%;
     z-index: 1;
     margin: 0 30px;
-    
+
 }
 
 .btn_left:hover {
- animation: move_left 0.5s linear infinite ;
+    animation: move_left 0.5s linear infinite;
 }
 
 .btn_right:hover {
-    animation: move_right 0.5s linear infinite ;  
+    animation: move_right 0.5s linear infinite;
 }
 
 /* card carousel  */
+
+.main_card:hover {
+    animation: scaleEffect 0.5s linear;
+}
 
 *.card:not(.active) {
     display: none;
@@ -79,21 +83,40 @@ i {
     0% {
         transform: translatex(0);
     }
+
     50% {
         transform: translatex(-6px);
     }
+
     100% {
         transform: translatex(0);
     }
 }
+
 @keyframes move_right {
     0% {
         transform: translatex(0);
     }
+
     50% {
         transform: translatex(6px);
     }
+
     100% {
         transform: translatex(0);
+    }
+}
+
+@keyframes scaleEffect {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+
+    100% {
+        transform: scale(1);
     }
 }
