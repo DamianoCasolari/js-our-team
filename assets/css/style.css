@@ -69,6 +69,10 @@ i {
 
 /* card carousel  */
 
+.shadow {
+    filter: brightness(60%);
+}
+
 .main_card:hover {
     animation: scaleEffect 0.5s linear;
 }

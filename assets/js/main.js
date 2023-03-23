@@ -170,7 +170,7 @@ function printCard(arrayInfo, activeImg) {
                 </div>
             </div>`
         const cardLeftEl = `
-         <div class="${classEl} card left_card p-4" style="width:15rem;">
+         <div class="${classEl} shadow card left_card p-4" style="width:15rem;">
           <img src="./assets/img/${teamMemberLeft.photo}" class="card-img-top" alt="...">
              <div class="card-body">
                 <h2 class="card-title fw-semibold">${teamMemberLeft.name}</h2>
@@ -178,7 +178,7 @@ function printCard(arrayInfo, activeImg) {
              </div>
          </div>`
         const cardRightEl = `
-         <div class="${classEl} card right_card p-4" style="width:15rem;">
+         <div class="${classEl} shadow card right_card p-4" style="width:15rem;">
           <img src="./assets/img/${teamMemberRight.photo}" class="card-img-top" alt="...">
              <div class="card-body">
                 <h2 class="card-title fw-semibold">${teamMemberRight.name}</h2>
