@@ -152,8 +152,15 @@ function printCard(arrayInfo, activeImg) {
     }
 }
 
-// function to create single card and don't repeat the template litteral 
-
+ 
+/**
+ * function to create single card and don't repeat the template litteral
+ * @param {objet} teamMember info to put in the card
+ * @param {string} classEl class to put if the cards are in main position
+ * @param {objet} teamMemberLeft info of the card on the left to be able to make a comparison in the condition
+ * @param {objet} teamMemberRight info of the card on the Right to be able to make a comparison in the condition
+ * @returns 
+ */
 function CreateCard(teamMember, classEl, teamMemberLeft, teamMemberRight) {
     let widthData = 30
     let towards = "main_card";
