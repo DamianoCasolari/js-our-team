@@ -57,13 +57,16 @@ const arrayInfo = [
 
 printCard(arrayInfo, activeImg);
 
+// create three different array of card
+
+const arrayCard = document.querySelectorAll(".main_card")
+const arrayLeftCard = document.querySelectorAll(".left_card")
+const arrayRightCard = document.querySelectorAll(".right_card")
+
 // Create carousel 
 
 // Add carousel effect left button
 btnLeftEl.addEventListener("click", function () {
-    const arrayCard = document.querySelectorAll(".main_card")
-    const arrayLeftCard = document.querySelectorAll(".left_card")
-    const arrayRightCard = document.querySelectorAll(".right_card")
 
     let currentCard = arrayCard[activeImg];
     let currentLeftCard = arrayLeftCard[activeImg];
@@ -77,36 +80,22 @@ btnLeftEl.addEventListener("click", function () {
     // condition main / left / right card
     if (activeImg < arrayCard.length - 1) {
         activeImg++;
-        currentCard = arrayCard[activeImg];
-        currentCard.classList.add("active")
-
-        currentLeftCard = arrayLeftCard[activeImg];
-        currentLeftCard.classList.add("active")
-
-        currentCardRight = arrayRightCard[activeImg];
-        currentCardRight.classList.add("active")
-
     } else {
-        activeImg = 0;
-        currentCard = arrayCard[activeImg];
-        currentCard.classList.add("active")
-
-        currentLeftCard = arrayLeftCard[activeImg];
-        currentLeftCard.classList.add("active")
-
-        currentCardRight = arrayRightCard[activeImg];
-        currentCardRight.classList.add("active")
-
+        activeImg = 0
     }
-   
+    currentCard = arrayCard[activeImg];
+    currentCard.classList.add("active")
+
+    currentLeftCard = arrayLeftCard[activeImg];
+    currentLeftCard.classList.add("active")
+
+    currentRightCard = arrayRightCard[activeImg];
+    currentRightCard.classList.add("active")
+
 })
 
 // Add carousel effect right button
 btnRightEl.addEventListener("click", function () {
-
-    const arrayCard = document.querySelectorAll(".main_card")
-    const arrayLeftCard = document.querySelectorAll(".left_card")
-    const arrayRightCard = document.querySelectorAll(".right_card")
 
     let currentCard = arrayCard[activeImg];
     let currentLeftCard = arrayLeftCard[activeImg];
@@ -116,32 +105,24 @@ btnRightEl.addEventListener("click", function () {
     currentLeftCard.classList.remove("active")
     currentRightCard.classList.remove("active")
 
- // condition main / left / right card
+    // condition main / left / right card
     if (activeImg > 0) {
         activeImg--;
-        currentCard = arrayCard[activeImg];
-        currentCard.classList.add("active")
-
-        currentLeftCard = arrayLeftCard[activeImg];
-        currentLeftCard.classList.add("active")
-
-        currentCardRight = arrayRightCard[activeImg];
-        currentCardRight.classList.add("active")
 
     } else {
         activeImg = arrayCard.length - 1;
-        console.log(activeImg);
-        currentCard = arrayCard[activeImg];
-        currentCard.classList.add("active")
-
-        currentLeftCard = arrayLeftCard[activeImg];
-        currentLeftCard.classList.add("active")
-
-        currentCardRight = arrayRightCard[activeImg];
-        currentCardRight.classList.add("active")
     }
-    
+    currentCard = arrayCard[activeImg];
+    currentCard.classList.add("active")
+
+    currentLeftCard = arrayLeftCard[activeImg];
+    currentLeftCard.classList.add("active")
+
+    currentRightCard = arrayRightCard[activeImg];
+    currentRightCard.classList.add("active")
+
 })
+
 
 // FUNCTION 
 
@@ -152,45 +133,46 @@ btnRightEl.addEventListener("click", function () {
  */
 function printCard(arrayInfo, activeImg) {
     for (let index = 0; index < arrayInfo.length; index++) {
+        // condiction for create INFO of Main card 
         const teamMember = arrayInfo[index];
-        // condiction for create left card 
-        const teamMemberLeft = index == 0 ? arrayInfo[5] : arrayInfo[index - 1] ;
-        // console.log(teamMemberLeft);
-        // condiction for create right card 
+        // condiction for create INFO of left card 
+        const teamMemberLeft = index == 0 ? arrayInfo[5] : arrayInfo[index - 1];
+        // condiction for create INFO of Right card 
         const teamMemberRight = index == 5 ? arrayInfo[0] : arrayInfo[index + 1];
-        // console.log(teamMemberRight);
         classEl = index == activeImg ? 'active' : '';
-    
-        const cardEl = `
-            <div class="${classEl} card main_card p-4" style="width:30rem;">
-             <img src="./assets/img/${teamMember.photo}" class="card-img-top" alt="...">
+
+        const cardEl = CreateCard(teamMember, classEl, teamMemberLeft, teamMemberRight);
+        const cardLeftEl = CreateCard(teamMemberLeft, classEl, teamMemberLeft, teamMemberRight);
+        const cardRightEl = CreateCard(teamMemberRight, classEl, teamMemberLeft, teamMemberRight);
+
+        leftCardEl.insertAdjacentHTML("beforeend", cardLeftEl)
+        rightCardEl.insertAdjacentHTML("beforeend", cardRightEl)
+        containerEl.insertAdjacentHTML("beforeend", cardEl)
+
+    }
+}
+
+// function to create single card and don't repeat the template litteral 
+
+function CreateCard(teamMember, classEl, teamMemberLeft, teamMemberRight) {
+    let widthData = 30
+    let towards = "main_card";
+    if (teamMember == teamMemberLeft) {
+        widthData = 15;
+        towards = "left_card"
+    } else if (teamMember == teamMemberRight){
+        widthData = 15;
+        towards = "right_card"
+    }
+    const layoutCard = `<div class="${classEl} card ${towards} p-4" style="width:${widthData}rem;">
+                <img src="./assets/img/${teamMember.photo}" class="card-img-top" alt="...">
                 <div class="card-body">
                    <h2 class="card-title fw-semibold">${teamMember.name}</h2>
                    <h3 class="card-subtitle mb-2 text-muted ">${teamMember.role}</h3>
                 </div>
             </div>`
-        const cardLeftEl = `
-         <div class="${classEl} shadow card left_card p-4" style="width:15rem;">
-          <img src="./assets/img/${teamMemberLeft.photo}" class="card-img-top" alt="...">
-             <div class="card-body">
-                <h2 class="card-title fw-semibold">${teamMemberLeft.name}</h2>
-                <h3 class="card-subtitle mb-2 text-muted ">${teamMemberLeft.role}</h3>
-             </div>
-         </div>`
-        const cardRightEl = `
-         <div class="${classEl} shadow card right_card p-4" style="width:15rem;">
-          <img src="./assets/img/${teamMemberRight.photo}" class="card-img-top" alt="...">
-             <div class="card-body">
-                <h2 class="card-title fw-semibold">${teamMemberRight.name}</h2>
-                <h3 class="card-subtitle mb-2 text-muted ">${teamMemberRight.role}</h3>
-             </div>
-         </div>`
 
-        leftCardEl.insertAdjacentHTML("beforeend", cardLeftEl)
-        rightCardEl.insertAdjacentHTML("beforeend", cardRightEl)
-        containerEl.insertAdjacentHTML("beforeend", cardEl)
-    
-    }
+    return layoutCard
 }
 
 
